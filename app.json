@@ -1,0 +1,27 @@
+
+{
+	"name" : "Twitter's Chat",
+	"description": "With Twitter's Chat you can choose to display a list of tweets of a certain user or tweets about a topic or other informations with nice effects",
+	"icon": "bird.jpeg",
+	"version": "1.1",
+	
+
+	"app" : 
+	{
+		"type" : "change",
+		"id"   : "Streaming with interpolation"
+	},
+
+	"com" : 
+	{
+		"type" : "html5",
+		"page"   : "index.html",
+		"frontEnd" : 
+		{
+			"page" : "gui.html",
+			"public" : "public"
+		}
+	}
+	
+	
+}

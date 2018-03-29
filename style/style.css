@@ -1,0 +1,111 @@
+@font-face 
+{
+    font-family: myArial;
+    src: url(./font/MyArial.ttf);
+}
+
+@font-face 
+{
+    font-family: PCSenior;
+    src: url(./font/PCSenior_8.ttf);
+}
+
+@font-face 
+{
+    font-family: Minecraftia;
+    src: url(./font/MinecraftiaRegular_8.ttf);
+}
+
+body 
+{
+    background: black;
+    padding: 0;
+    margin: 0;
+    image-rendering: crisp-edges;
+    height: 100%;
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+span 
+{
+    color: #f3fcf0;
+    font-family: PCSenior;
+    font-size: 8px;
+    -webkit-font-smoothing: none;
+}
+
+p 
+{
+    font-family: PCSenior;
+    font-size: 8px;
+    color: #f3fcf0;
+    -webkit-font-smoothing: none;
+    white-space: nowrap;
+
+}
+
+.content 
+{
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.hashtag 
+{
+    color: #3abeff;
+    font-family: PCSenior;
+    font-size: 8px;
+}
+
+.query 
+{
+    color:#9600cd;
+}
+
+.likes 
+{
+    color: #ee4266;
+}
+
+.tweet-author
+{
+    color: #00fc54;
+}
+
+.mentions
+{
+    color: #ffd23f;
+}
+
+.tweet-container 
+{
+    display: flex;
+    height: 100%;
+    position: absolute;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.tweet-search, .tweet-user, .tweet-follower 
+{
+    display: none;
+    position: relative;
+    align-items: center;
+}
+
+.tweet-follower
+{
+    justify-content: center;
+}
+
+#errorDiv {
+    width: 100%;
+}

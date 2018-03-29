@@ -1,0 +1,267 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Twitter's Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="frontend/bootstrap/css/bootstrap.min.css">
+    <style>
+        body { background-image: url("frontend/24.jpg"); }
+    </style>
+</head>
+
+<body>
+    <div style="background-color:white" class="p-2 container col-sm-12 col-md-8 col-lg-6 m-1 mx-auto border rounded my-md-5">
+        <h1 class="text-center text-info">Twitter's Chat</h1>
+        <img class="mx-auto d-block mb-2" src="frontend/bird2.gif" alt="LedsChat bird">
+        <h2 class="text-center h6">Choose the feed you want to display</h2>
+        <div class="d-flex align-content-stretch my-3" role="group">
+            <button type="button" id="userBtn" class="btn btn-info w-100 active">User lookup</button>
+            <button type="button" id="keywordBtn" class="btn btn-info w-100  mx-1">Keyword feed</button>
+            <button type="button" id="followerBtn" class="btn btn-info w-100">Followers</button>
+        </div>
+        <div id="user-option" class="row m-1">
+            <h3 class="card-title h5">Twitter user lookup</h3>
+            <p class="card-text">For a given twitter user, displays the most recent tweets, corresponding number of likes and numbers of followers</p>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" placeholder="Username" id="userName" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="row border rounded m-1 p-2 my-3">
+                <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
+                <label for="userTweetNumber" class="col-12 p-0">Number of tweets display (default is 10)</label>
+                <select class="form-control custom-select col-8" id="userTweetNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <label for="userSpeed" class="col-12 p-0 mt-3">Speed for the scrolling text (default is 3)</label>
+                <select class="form-control custom-select col-8" id="userSpeed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button id="user" type="button" class="btn btn-info btn-block">GO</button>
+        </div>
+        <div id="keyword-option" class="row m-1">
+            <h3 class="card-title h5">Twitter keyword feed</h3>
+            <p class="card-text">Displays a collection of relevant tweets about a specified keyword</p>
+            <input type="text" placeholder="Keyword" id="keyword">
+            <p class="text-muted">You can find help from twitter to make pertinent query
+                <a href="https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators">here</a>
+            </p>
+            <div class="row border rounded m-1 p-2 my-3">
+                <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
+                <label for="searchTweetNumber" class="col-12 p-0">Number of tweets display (default is 10)</label>
+                <select class="form-control custom-select col-8" id="searchTweetNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <label for="searchSpeed" class="col-12 p-0 mt-3">Speed for the scrolling text (default is 3)</label>
+                <select class="form-control custom-select col-8" id="searchSpeed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button id="search" type="button" class="btn btn-info btn-block">GO</button>
+        </div>
+        <div id="follower-option" class="row m-1">
+            <h3 class="card-title h5">Twitter user followers</h3>
+            <p class="card-text">Displays number of followers of the choosen user</p>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" placeholder="Username" id="followerName" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <button id="follower" type="button" class="btn btn-info btn-block mt-2">GO</button>
+        </div>
+        <div>
+            <p id="error"></p>
+        </div>
+        <div class="form-row"></div>
+        <span class="col-auto"><small>It's your first time running Twitter's Chat ? Please click</small></span>
+            <button class="col-auto btn btn-danger btn-sm" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
+              Instructions
+            </button>
+          <div class="collapse m-1" id="instructions">
+            <div class="card card-body">
+                <p class="m-0"> To use this app, you need an unique set of keys provided by twitter.<br/>
+                Before the first use get your twitter consumer key, consumer secret, access token key and access token secret by following this
+                <a href="https://www.slickremix.com/docs/how-to-get-api-keys-and-tokens-for-twitter/" target="_blank">online tutorial</a>.<br/>
+                Once you got your set of keys, you need to write them in the file key.js of your app. Go to the file then write the keys at the corresponding lines.<br/>
+                Save it then run Twitter's Chat  
+            </p>
+            </div>
+          </div>
+    </div>
+
+
+
+    <script src="frontend/bootstrap/jquery-3.3.1.slim.min.js"></script>
+    <script src="frontend/bootstrap/js/bootstrap.min.js"></script>
+    <script src="socketio/socket.io.js"></script>
+    <script src="js/web.js"></script>
+    <script src="js/frontEnd.js"></script>
+    <script>
+        let userOption = document.querySelector('#user-option');
+        let keywordOption = document.querySelector('#keyword-option');
+        let followerOption = document.querySelector('#follower-option');
+        let errorMessage = document.querySelector('#error');
+        let userBtn = document.querySelector('#userBtn');
+        let keywordBtn = document.querySelector('#keywordBtn');
+        let followerBtn = document.querySelector('#followerBtn');
+        userOption.style.display = "flex";
+        keywordOption.style.display = "none";
+        followerOption.style.display = "none";
+
+        userBtn.onclick = () => {
+            userOption.style.display = "flex";
+            keywordOption.style.display = "none";
+            followerOption.style.display = "none";
+            userBtn.classList.add('active');
+            keywordBtn.classList.remove('active');
+            followerBtn.classList.remove('active');
+        }
+
+        keywordBtn.onclick = () => {
+            userOption.style.display = "none";
+            keywordOption.style.display = "flex";
+            followerOption.style.display = "none";
+            userBtn.classList.remove('active');
+            keywordBtn.classList.add('active');
+            followerBtn.classList.remove('active');
+        }
+
+        followerBtn.onclick = () => {
+            userOption.style.display = "none";
+            keywordOption.style.display = "none";
+            followerOption.style.display = "flex";
+            userBtn.classList.remove('active');
+            keywordBtn.classList.remove('active');
+            followerBtn.classList.add('active');
+        }
+
+        document.querySelector('#user').onclick = () => {
+            let userName = document.querySelector('#userName').value;
+            errorMessage.style.display = 'none';
+
+            webrtc.send({
+                feed: 'user',
+                user: userName
+            });
+        };
+
+        document.querySelector('#follower').onclick = () => {
+            let userName = document.querySelector('#followerName').value;
+            errorMessage.style.display = 'none';
+
+            console.log('follower sent');
+
+            errorMessage.style.display = 'none';
+
+            webrtc.send({
+                feed: 'follower',
+                user: userName
+            });
+        };
+
+        document.querySelector('#search').onclick = () => {
+            let query = document.querySelector('#keyword').value;
+            errorMessage.style.display = 'none';
+
+            webrtc.send({
+                feed: 'search',
+                keyword: query
+            });
+        };
+
+        document.querySelector('#searchTweetNumber').onchange = () => {
+            var searchTweetNumber = document.querySelector('#searchTweetNumber').value;
+            errorMessage.style.display = 'none';
+
+            webrtc.send({
+                cmd: 'TweetNumber',
+                arg: searchTweetNumber
+            });
+        }
+
+        document.querySelector('#userTweetNumber').onchange = () => {
+            var userTweetNumber = document.querySelector('#userTweetNumber').value;
+            errorMessage.style.display = 'none';
+            console.log(userTweetNumber);
+
+            webrtc.send({
+                cmd: 'TweetNumber',
+                arg: userTweetNumber
+            });
+        }
+
+        document.querySelector('#userSpeed').onchange = () => {
+            var userSpeed = document.querySelector('#userSpeed').value;
+            errorMessage.style.display = 'none';
+            console.log(userSpeed);
+
+            webrtc.send({
+                cmd: 'Speed',
+                arg: userSpeed
+            });
+        }
+
+        document.querySelector('#searchSpeed').onchange = () => {
+            var searchSpeed = document.querySelector('#searchSpeed').value;
+            errorMessage.style.display = 'none';
+            console.log('search speed');
+
+            webrtc.send({
+                cmd: 'Speed',
+                arg: searchSpeed
+            });
+        }
+
+        webrtc.onData((data) => {
+
+            if (data.cmd === 'error') {
+                console.log('error received');
+
+                errorMessage.innerHTML = 'Sorry, an error occured: <br>' + data.arg;
+                errorMessage.style.display = 'flex';
+                errorMessage.classList.add('alert');
+                errorMessage.classList.add('alert-warning');
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
