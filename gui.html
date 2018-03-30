@@ -31,7 +31,7 @@
                 </div>
                 <input type="text" placeholder="Username" id="userName" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11 mx-auto">
                 <p class="col-12 p-0 text-center text-secondary ">optional parameters</p>
                 <label for="userTweetNumber" class="col-12 p-0 text-secondary">Number of tweets display (default is 10)</label>
                 <select class="form-control custom-select col-8 text-secondary" id="userTweetNumber">
@@ -57,7 +57,7 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <button id="user" type="button" class="btn btn-info btn-block">GO</button>
+            <button id="user" type="button" class="btn btn-success btn-block">GO</button>
         </div>
         <div id="keyword-option" class="row m-1">
             <h3 class="card-title h5">Twitter keyword feed</h3>
@@ -66,7 +66,7 @@
             <p class="text-muted">You can find help from twitter to make pertinent query
                 <a href="https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators">here</a>
             </p>
-            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11 mx-auto">
                 <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
                 <label for="searchTweetNumber" class="col-12 p-0 text-secondary">Number of tweets display (default is 10)</label>
                 <select class="form-control custom-select col-8 text-secondary" id="searchTweetNumber">
@@ -92,18 +92,18 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <button id="search" type="button" class="btn btn-info btn-block">GO</button>
+            <button id="search" type="button" class="btn btn-success btn-block">GO</button>
         </div>
         <div id="follower-option" class="row m-1">
-            <h3 class="card-title col-12 h5">Twitter user followers</h3>
-            <p class="card-text">Displays number of followers for a choosen user</p>
+            <h3 class="card-title h5">Twitter user followers</h3>
+            <p class="card-text col-12 p-0">Displays number of followers for a choosen user</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" placeholder="Username" id="followerName" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11 mx-auto">
                 <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
                 <label for="followerSpeed" class="col-12 p-0 mt-3 text-secondary">Speed for the scrolling text (default is 3)</label>
                 <select class="form-control custom-select col-8 text-secondary" id="followerSpeed">
@@ -114,7 +114,7 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <button id="follower" type="button" class="btn btn-info btn-block mt-2">GO</button>
+            <button id="follower" type="button" class="btn btn-success btn-block mt-2">GO</button>
         </div>
         <div>
             <p id="error"></p>
