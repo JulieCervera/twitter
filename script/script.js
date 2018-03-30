@@ -181,7 +181,7 @@ function displayFollowers()
         let millis = Date.now() - start;
         let position = (millis/speed);
         tweetFollower.style.right = interWidth + 'px';
-        interWidth = interWidth + position;
+        interWidth = Math.round(interWidth + position);
         start = Date.now();
         if (interWidth >= elemWidth - windowWidth) 
         {
@@ -194,7 +194,7 @@ function displayFollowers()
             let millis = Date.now() - start;
             let position = (millis/speed);    
             tweetFollower.style.right = interWidth + 'px';
-            interWidth = interWidth - position;
+            interWidth = Math.round(interWidth - position);
             start = Date.now();
             if (interWidth <= 0) 
             {
@@ -208,7 +208,7 @@ function displayFollowers()
         let millis = Date.now() - start;
         let position = millis/speed; 
         tweetFollower.style.right = interWidth + 'px';
-        interWidth = interWidth + position;
+        interWidth = Math.round(interWidth + position);
         start = Date.now();
         if (interWidth >= 0) 
         {
@@ -222,7 +222,7 @@ function displayFollowers()
         let millis = Date.now() - start;
         let position = millis/speed;
         tweetFollower.style.right = interWidth + 'px';
-        interWidth = interWidth - position;
+        interWidth = Math.round(interWidth - position);
         start = Date.now();
         if (interWidth < elemWidth - windowWidth) 
         {
@@ -318,7 +318,7 @@ function scroll(elem, callback)
         let millis = Date.now() - start;
         let position = (millis / speed);
         elem.style.left = interWidth + 'px';
-        interWidth = interWidth - position;
+        interWidth = Math.round(interWidth - position);
         start = Date.now();        
         if (interWidth <= -elemWidth) 
         {            
