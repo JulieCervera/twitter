@@ -31,10 +31,10 @@
                 </div>
                 <input type="text" placeholder="Username" id="userName" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <div class="row border rounded m-1 p-2 my-3">
-                <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
-                <label for="userTweetNumber" class="col-12 p-0">Number of tweets display (default is 10)</label>
-                <select class="form-control custom-select col-8" id="userTweetNumber">
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
+                <p class="col-12 p-0 text-center text-secondary ">optional parameters</p>
+                <label for="userTweetNumber" class="col-12 p-0 text-secondary">Number of tweets display (default is 10)</label>
+                <select class="form-control custom-select col-8 text-secondary" id="userTweetNumber">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -48,8 +48,8 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <label for="userSpeed" class="col-12 p-0 mt-3">Speed for the scrolling text (default is 3)</label>
-                <select class="form-control custom-select col-8" id="userSpeed">
+                <label for="userSpeed" class="col-12 p-0 mt-3 text-secondary">Speed for the scrolling text (default is 3)</label>
+                <select class="form-control custom-select col-8 text-secondary" id="userSpeed">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -66,16 +66,16 @@
             <p class="text-muted">You can find help from twitter to make pertinent query
                 <a href="https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators">here</a>
             </p>
-            <div class="row border rounded m-1 p-2 my-3">
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
                 <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
-                <label for="searchTweetNumber" class="col-12 p-0">Number of tweets display (default is 10)</label>
-                <select class="form-control custom-select col-8" id="searchTweetNumber">
+                <label for="searchTweetNumber" class="col-12 p-0 text-secondary">Number of tweets display (default is 10)</label>
+                <select class="form-control custom-select col-8 text-secondary" id="searchTweetNumber">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                    <option value="10" selected>10</option>
+                    <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
                     <option value="30">30</option>
@@ -83,11 +83,11 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <label for="searchSpeed" class="col-12 p-0 mt-3">Speed for the scrolling text (default is 3)</label>
-                <select class="form-control custom-select col-8" id="searchSpeed">
+                <label for="searchSpeed" class="col-12 p-0 mt-3 text-secondary">Speed for the scrolling text (default is 3)</label>
+                <select class="form-control custom-select col-8 text-secondary" id="searchSpeed">
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="3" selected>3</option>
+                    <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
@@ -95,13 +95,24 @@
             <button id="search" type="button" class="btn btn-info btn-block">GO</button>
         </div>
         <div id="follower-option" class="row m-1">
-            <h3 class="card-title h5">Twitter user followers</h3>
-            <p class="card-text">Displays number of followers of the choosen user</p>
+            <h3 class="card-title col-12 h5">Twitter user followers</h3>
+            <p class="card-text">Displays number of followers for a choosen user</p>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
                 <input type="text" placeholder="Username" id="followerName" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="row border rounded m-1 p-2 my-3 bg-light col-11">
+                <p class="col-12 p-0 text-center text-secondary">optional parameters</p>
+                <label for="followerSpeed" class="col-12 p-0 mt-3 text-secondary">Speed for the scrolling text (default is 3)</label>
+                <select class="form-control custom-select col-8 text-secondary" id="followerSpeed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
             <button id="follower" type="button" class="btn btn-info btn-block mt-2">GO</button>
         </div>
@@ -110,7 +121,7 @@
         </div>
         <div class="form-row"></div>
         <span class="col-auto"><small>It's your first time running Twitter's Chat ? Please click</small></span>
-            <button class="col-auto btn btn-danger btn-sm" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
+            <button class="col-auto btn btn-warning btn-sm" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
               Instructions
             </button>
           <div class="collapse m-1" id="instructions">
@@ -174,7 +185,6 @@
         document.querySelector('#user').onclick = () => {
             let userName = document.querySelector('#userName').value;
             errorMessage.style.display = 'none';
-
             webrtc.send({
                 feed: 'user',
                 user: userName
@@ -184,11 +194,7 @@
         document.querySelector('#follower').onclick = () => {
             let userName = document.querySelector('#followerName').value;
             errorMessage.style.display = 'none';
-
-            console.log('follower sent');
-
             errorMessage.style.display = 'none';
-
             webrtc.send({
                 feed: 'follower',
                 user: userName
@@ -198,7 +204,6 @@
         document.querySelector('#search').onclick = () => {
             let query = document.querySelector('#keyword').value;
             errorMessage.style.display = 'none';
-
             webrtc.send({
                 feed: 'search',
                 keyword: query
@@ -208,7 +213,6 @@
         document.querySelector('#searchTweetNumber').onchange = () => {
             var searchTweetNumber = document.querySelector('#searchTweetNumber').value;
             errorMessage.style.display = 'none';
-
             webrtc.send({
                 cmd: 'TweetNumber',
                 arg: searchTweetNumber
@@ -218,8 +222,6 @@
         document.querySelector('#userTweetNumber').onchange = () => {
             var userTweetNumber = document.querySelector('#userTweetNumber').value;
             errorMessage.style.display = 'none';
-            console.log(userTweetNumber);
-
             webrtc.send({
                 cmd: 'TweetNumber',
                 arg: userTweetNumber
@@ -229,8 +231,6 @@
         document.querySelector('#userSpeed').onchange = () => {
             var userSpeed = document.querySelector('#userSpeed').value;
             errorMessage.style.display = 'none';
-            console.log(userSpeed);
-
             webrtc.send({
                 cmd: 'Speed',
                 arg: userSpeed
@@ -240,8 +240,15 @@
         document.querySelector('#searchSpeed').onchange = () => {
             var searchSpeed = document.querySelector('#searchSpeed').value;
             errorMessage.style.display = 'none';
-            console.log('search speed');
+            webrtc.send({
+                cmd: 'Speed',
+                arg: searchSpeed
+            });
+        }
 
+        document.querySelector('#followerSpeed').onchange = () => {
+            var searchSpeed = document.querySelector('#followerSpeed').value;
+            errorMessage.style.display = 'none';
             webrtc.send({
                 cmd: 'Speed',
                 arg: searchSpeed

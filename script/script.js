@@ -2,8 +2,7 @@ let ledschat = require('ledschat');
 let webrtc = new ledschat.WebRTC();
 let topology = ledschat.topology();
 let emojiStrip = require('emoji-strip');
-var start = 0;
-
+let start = 0;
 let params = {
     // keyword to look up in twiSearch function
     q: '',
@@ -14,8 +13,7 @@ let params = {
     count: '10',
     tweet_mode: 'extended',
     result_type: 'mixed'
-}
-
+};
 let feed,
     windowWidth = topology.width * 10,
     windowHeight = topology.height * 10,
@@ -102,7 +100,6 @@ function tweetsCycle(tweets, index)
     }
 }
 
-
 function twiLookup(params) 
 {
     client.get('users/lookup', params, function (error, users, response) {
@@ -152,12 +149,13 @@ function displayFollowers()
     window.clearInterval(intervalPing);
     window.clearInterval(intervalPong);
     start = Date.now();
-    if (windowWidth - elemWidth > 0) 
+    if (windowWidth - elemWidth >= 0) 
     {
-        if (windowWidth - elemWidth < 10) 
+        if (windowWidth - elemWidth < 15) 
         {
+            tweetContainer.style.justifyContent = "center";
             tweetFollower.style.right = '2px';
-            intervalDown = window.setInterval(scrollDown, speed+10);
+            intervalDown = window.setInterval(scrollDown, speed + 20);
         } 
         else 
         {
@@ -165,7 +163,7 @@ function displayFollowers()
             intervalLeft = window.setInterval(scrollLeft, speed);
         }
     } 
-    else if (elemWidth - windowWidth >= 0) 
+    else if (elemWidth - windowWidth > 0) 
     {
         tweetFollower.style.bottom = '0px';
         intervalPong = window.setInterval(scrollPong, speed);
@@ -194,7 +192,7 @@ function displayFollowers()
         function scrollPing() 
         {
             let millis = Date.now() - start;
-            let position = (millis/50);    
+            let position = (millis/speed);    
             tweetFollower.style.right = interWidth + 'px';
             interWidth = interWidth - position;
             start = Date.now();
@@ -222,7 +220,7 @@ function displayFollowers()
     function scrollRight() 
     {
         let millis = Date.now() - start;
-        let position = millis/50;
+        let position = millis/speed;
         tweetFollower.style.right = interWidth + 'px';
         interWidth = interWidth - position;
         start = Date.now();
@@ -263,9 +261,7 @@ function twiTimeline(params)
 
 // Display list of tweets
 function displayLastsTweets(tweetList, index) 
-{
-    console.log(tweetList);
-    
+{    
     if (index === tweetList.length) setFollower();
     else 
     {        
@@ -307,6 +303,7 @@ function scroll(elem, callback)
     let interHeight = (windowHeight / 2 + policeHeight / 2);
     if (elemWidth < interWidth) 
     {
+        tweetContainer.style.justifyContent = 'center';
         intervalDown = window.setTimeout(scrollDown, speed);
         tweetFollower.style.bottom = (windowHeight / 2 + policeHeight / 2) + 'px';
     }
@@ -371,6 +368,7 @@ webrtc.onData((data) =>
         tweetSearch.style.display = 'none';
         feed = 'user';
         params.screen_name = data.user;
+        tweetContainer.style.justifyContent = 'start';
         window.clearInterval(intervalDown);
         window.clearInterval(intervalLeft);
         window.clearInterval(intervalRight);
@@ -384,6 +382,7 @@ webrtc.onData((data) =>
         tweetUser.style.display = 'none';
         feed = 'follower';
         params.screen_name = data.user;
+        tweetContainer.style.justifyContent = 'start';        
         window.clearInterval(intervalDown);
         window.clearInterval(intervalLeft);
         window.clearInterval(intervalRight);
@@ -395,6 +394,7 @@ webrtc.onData((data) =>
     {
         tweetUser.style.display = 'none';
         tweetFollower.style.display = 'none';
+        tweetContainer.style.justifyContent = 'start';        
         feed = 'search';
         params.q = data.keyword;
         window.clearInterval(intervalDown);
@@ -426,9 +426,6 @@ webrtc.onData((data) =>
                 break;
             case 5:
                 speed = 20;
-                break;
-            default:
-                speed = 40;        
                 break;
         }
     }
